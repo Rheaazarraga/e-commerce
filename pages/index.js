@@ -5,6 +5,7 @@ import { Product, FooterBanner, HeroBanner } from '../components';
 
 const Home = ({ products, bannerData }) => (
     <div>
+      {/* if banner data exists, then pass it */}
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
       {console.log(bannerData)}
       <div className="products-heading">
