@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
 
-const Product = () => {
+// gets the url for the image inside the Sanity dashboard
+import { urlFor } from '../lib/client';
+
+const Product = ({ product }) => {
   return (
     <div>Product</div>
   )

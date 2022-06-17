@@ -14,7 +14,7 @@ const Home = ({ products, bannerData }) => (
 
       <div className="products-container">
         {/* if product exists, display the products name */}
-        {products?.map((product) => product.name)}
+        {products?.map((product) => <Product key={product._id} product={product} />)}
       </div>
 
       <FooterBanner />
