@@ -17,7 +17,8 @@ const Home = ({ products, bannerData }) => (
         {products?.map((product) => <Product key={product._id} product={product} />)}
       </div>
 
-      <FooterBanner />
+    {/* if bannerData exists, pass the first instance */}
+      <FooterBanner footerBanner={bannerData && bannerData[0]}/>
     </div>
   );
 
