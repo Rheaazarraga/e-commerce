@@ -4,6 +4,7 @@ import Link from 'next/link';
 // gets the url for the image inside the Sanity dashboard
 import { urlFor } from '../lib/client';
 
+// destructure the product object
 const Product = ({ product: { image, name, slug, price } }) => {
   return (
     <div>
