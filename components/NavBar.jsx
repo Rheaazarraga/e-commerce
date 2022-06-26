@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <div className='navbar-container'>
       <p className='logo'>
-        <Link href="/">BB-Tech Headphones</Link>
+        <Link href="/">BB-Tek Headphones</Link>
       </p>
 
       {/* button to open the cart */}
