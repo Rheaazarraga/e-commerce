@@ -26,8 +26,27 @@
           <h1>{name}</h1>
           <div className='reviews'>
             <div>
-              {/* icons */}
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiOutlineStar />
             </div>
+            <p>
+              (20)
+            </p>
+          </div>
+          <h4>Details:</h4>
+          <p>{details}</p>
+          <p className='price'>${price}</p>
+          <div className='quantity'>
+            <h3>Quantity:</h3>
+            <p className='quantity-desc'>
+              <span className='minus' onClick=''><AiOutlineMinus /></span>
+              <span className='num' onClick=''>0</span>
+              <span className='plus' onClick=''><AiOutlinePlus /></span>
+            </p>
           </div>
         </div>
       </div>
