@@ -1,7 +1,8 @@
  import React, { useState } from 'react';
  import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
  import { client, urlFor } from '../../lib/client';
- import { Product } from '../../components'; 
+ import { Product } from '../../components';
+ import Image from 'next/image';
  
  const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
@@ -12,18 +13,18 @@
       <div className='product-detail-container'>
         <div>
           <div className='image-container'>
-            <img src={urlFor(image && image[index])} className='product-detail-image' />
+            <Image src={urlFor(image && image[index])} alt='product-detail-img' className='product-detail-image' />
           </div>
           {/* PRODUCT CAROUSEL   */}
           <div className='small-images-container'>
             {image?.map((item, i) => (
-              <img
+              <>
               src={urlFor(item)}
-              // dynamic className if i (current index) is the one we're hovering over, display the selected enlarged image
+              {/* dynamic className if i (current index) is the one we're hovering over, display the selected enlarged image */}
               className={i === index ? 'small-image selected-image' : 'small-image'}
-              // callback function to setIndex to be equal to the individual index of the item 
+              {/* callback function to setIndex to be equal to the individual index of the item  */}
               onMouseEnter={() => setIndex(i)}
-                />
+              </>
             ))}
           </div>
         </div>
