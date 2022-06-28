@@ -1,4 +1,5 @@
  import React from 'react';
+ import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
  import { client, urlFor } from '../../lib/client';
  
  const ProductDetails = ({ product, products }) => {
@@ -9,6 +10,24 @@
         <div>
           <div className='image-container'>
             <img src={urlFor(image && image[0])} alt=''/>
+          </div>
+          {/* PRODUCT CAROUSEL  
+          <div className='small-images-container'>
+            {image?.map((item, i) => (
+              <img
+              src={urlFor(item)}
+              className=""
+              onMouseEnter=""
+                />
+            ))}
+          </div> */}
+        </div>
+        <div className='product-details-desc'>
+          <h1>{name}</h1>
+          <div className='reviews'>
+            <div>
+              {/* icons */}
+            </div>
           </div>
         </div>
       </div>
@@ -28,7 +47,7 @@
   const products = await client.fetch(query);
 
   // generate paths for each individual product, return an object containing the paths
-  
+
   const paths = products.map((product) => ({
     params: {
       slug: product.slug.current
