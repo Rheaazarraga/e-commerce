@@ -12,7 +12,7 @@
       <div className='product-detail-container'>
         <div>
           <div className='image-container'>
-            <img src={urlFor(image && image[index])} alt=''/>
+            <img src={urlFor(image && image[index])} className='product-detail-image' />
           </div>
           {/* PRODUCT CAROUSEL   */}
           <div className='small-images-container'>
