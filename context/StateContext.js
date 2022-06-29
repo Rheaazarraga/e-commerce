@@ -3,12 +3,12 @@ import React, { createContext, useContext, useState, UseEffect } from 'react';
 // pop-up notification that appears when something is added to/ removed from the cart or finish an order
 import { toast } from 'react-hot-toast';
 
-// hook
+// ----- hook
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
   
-  // states to manage the cart and the items in it
+  // ----- states to manage the cart and the items in it
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setcartItems] = useState();
 
@@ -21,15 +21,33 @@ export const StateContext = ({ children }) => {
   // can change the quantity for each individual item
   const [qty, setQty] = useState(1);
 
+
+  // ----- functions 
+
+  // increase quantity
+  const incQty = () => {
+    setQty((prevQty) => prevQty + 1);
+  }
+
+  // decrease quantity, make sure quantity cannot go lower than 1
+  const decQty = () => {
+    setQty((prevQty) => { prevQty 
+      if(prevQty - 1 < 1) return 1;
+      return prevQty - 1;
+    });
+  }
+
   return (
     <Context.Provider
-    //  values to pass across the entire application
+    // values to pass across the entire application
       value={{
         showCart,
         cartItems,
         totalPrice,
         totalQuantities,
-        qty
+        qty,
+        incQty,
+        decQty
       }}
     >
       {children}
