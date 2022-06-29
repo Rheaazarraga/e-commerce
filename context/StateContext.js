@@ -21,4 +21,19 @@ export const StateContext = ({ children }) => {
   // can change the quantity for each individual item
   const [qty, setQty] = useState(1);
 
+  return (
+    <Context.Provider
+    //  values to pass across the entire application
+      value={{
+        showCart,
+        cartItems,
+        totalPrice,
+        totalQuantities,
+        qty
+      }}
+    >
+      {children}
+    </Context.Provider>
+  )
+
 }
