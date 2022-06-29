@@ -11,4 +11,14 @@ export const StateContext = ({ children }) => {
   // states to manage the cart and the items in it
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setcartItems] = useState();
+
+  // keep track of total price
+  const [totalPrice, settotalPrice] = useState();
+
+  // what are the quantites of all the items
+  const [totalQuantities, setTotalQuantities] = useState();
+
+  // can change the quantity for each individual item
+  const [qty, setQty] = useState(1);
+
 }
