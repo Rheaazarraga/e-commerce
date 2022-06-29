@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import { Layout } from '../components';
-import { StateContext } from '../Context/StateContext';
+import { StateContext } from '../context/StateContext';
 
 // small notification pop-up
 import { Toaster } from 'react-hot-toast';
