@@ -2,29 +2,31 @@
  import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
  import { client, urlFor } from '../../lib/client';
  import { Product } from '../../components';
- import Image from 'next/image';
+ import { useStateContext } from '../../context/StateContext';
+
  
  const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
   const [ index, setIndex ] = useState(0);
+  const { decQty, incQty, qty } = useStateContext();
 
    return (
      <div>
       <div className='product-detail-container'>
         <div>
-          <div className='image-container'>
-            <Image src={urlFor(image && image[index])} alt='product-detail-img' className='product-detail-image' />
+        <div className="image-container">
+            <img src={urlFor(image && image[index])} className="product-detail-image" />
           </div>
-          {/* PRODUCT CAROUSEL   */}
-          <div className='small-images-container'>
+          <div className="small-images-container">
             {image?.map((item, i) => (
-              <>
-              src={urlFor(item)}
-              {/* dynamic className if i (current index) is the one we're hovering over, display the selected enlarged image */}
-              className={i === index ? 'small-image selected-image' : 'small-image'}
-              {/* callback function to setIndex to be equal to the individual index of the item  */}
-              onMouseEnter={() => setIndex(i)}
-              </>
+              <img 
+                key={i}
+                src={urlFor(item)}
+                 // dynamic className if i (current index) is the one we're hovering over, display the selected enlarged image 
+                className={i === index ? 'small-image selected-image' : 'small-image'}
+                // callback function to setIndex to be equal to the individual index of the item 
+                onMouseEnter={() => setIndex(i)}
+              />
             ))}
           </div>
         </div>
@@ -49,9 +51,9 @@
           <div className='quantity'>
             <h3>Quantity:</h3>
             <p className='quantity-desc'>
-              <span className='minus' onClick=''><AiOutlineMinus /></span>
-              <span className='num' onClick=''>0</span>
-              <span className='plus' onClick=''><AiOutlinePlus /></span>
+              <span className='minus' onClick={decQty}><AiOutlineMinus /></span>
+              <span className='num' onClick=''>{qty}</span>
+              <span className='plus' onClick={incQty}><AiOutlinePlus /></span>
             </p>
           </div>
           <div className='buttons'>
