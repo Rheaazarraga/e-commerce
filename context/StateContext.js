@@ -15,7 +15,7 @@ export const StateContext = ({ children }) => {
 	const [totalPrice, setTotalPrice] = useState();
 
 	// what are the quantities of all the items
-	const [totalQuantities, setTotalQuantities] = useState();
+	const [totalQuantities, setTotalQuantities] = useState(0);
 
 	// can change the quantity for each individual item
 	const [qty, setQty] = useState(1);
