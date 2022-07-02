@@ -46,8 +46,9 @@ export const StateContext = ({ children }) => {
 			setCartItems(updatedCartItems);
 		// if an item does NOT already exist in the cart
 		} else {
+			// update the product quantity
 			product.quantity = quantity;
-			
+			// spread all existing cartItems, add an object to spread new product (product with updated quantity)
 			setCartItems([...cartItems, { ...product }]);
 		}
 		toast.success(`${qty} ${product.name} added to the cart.`);
