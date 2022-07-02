@@ -81,3 +81,10 @@ export const StateContext = ({ children }) => {
 
 // special function to make it easier to grab the state
 export const useStateContext = () => useContext(Context);
+
+
+// context is for passing down props all the way down to any of the children without having to manually pass props into each component
+// works as a global state for all of the children of the Provider
+// Context.Provider is used to wrap all of the code that needs access to the information in the Context
+// it's single prop, value{}, is whatever the value of the context is
+// everything inside the Provider (components and their children, etc) all have access to the variable in the value prop of the Provider
