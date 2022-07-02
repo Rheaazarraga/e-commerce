@@ -73,6 +73,7 @@ export const StateContext = ({ children }) => {
 			// values to pass across the entire application
 			value={{
 				showCart,
+				setShowCart,
 				cartItems,
 				totalPrice,
 				totalQuantities,
