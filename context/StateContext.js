@@ -27,24 +27,30 @@ export const StateContext = ({ children }) => {
     // get cartItems state, check if product we want to add is already in the cart
 		const checkProductInCart = cartItems.find(item => item._id === product._id);
 
-    // if it is, only increase the quantity, don't add another instance of the same item
-		if (checkProductInCart) {
-			setTotalPrice(
-				prevTotalPrice => prevTotalPrice + product.price * quantity
-			);
-			setTotalQuantities(prevTotalQuantities => prevTotalQuantities + quantity);
+		// state to increase the total price by setting the previous total price + the newly added products price and the quantity 
+		setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
+		// state to update the quantities in the cart
+		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
 
+    // if item already exists in the cart, only increase the quantity, don't add another instance of the same item
+		if (checkProductInCart) {
     // update the items in the cart
-			const updatedCartItems = cartItems.map(cartProduct => {
+			const updatedCartItems = cartItems.map((cartProduct) => {
 				if (cartProduct._id === product._id)
 					return {
+					// update the cart quantity
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity
 					};
 			});
 			setCartItems(updatedCartItems);
-			toast.success(`${qty} ${product.name} added to the cart.`);
+		// if an item does NOT already exist in the cart
+		} else {
+			product.quantity = quantity;
+			
+			setCartItems([...cartItems, { ...product }]);
 		}
+		toast.success(`${qty} ${product.name} added to the cart.`);
 	};
 
 	// increase quantity
@@ -71,7 +77,8 @@ export const StateContext = ({ children }) => {
 				totalQuantities,
 				qty,
 				incQty,
-				decQty
+				decQty,
+				onAdd
 			}}
 		>
 			{children}
