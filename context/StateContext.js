@@ -9,7 +9,7 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
 	// ----- states to manage the cart and the items in it
 	const [showCart, setShowCart] = useState(false);
-	const [cartItems, setCartItems] = useState();
+	const [cartItems, setCartItems] = useState([]);
 
 	// keep track of total price
 	const [totalPrice, setTotalPrice] = useState();
