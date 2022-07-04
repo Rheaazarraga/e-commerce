@@ -13,12 +13,14 @@ const NavBar = () => {
       </p>
 
       {/* button to open the cart */}
-      <button type='button' className='cart-icon' onClick=''>
+      <button type='button' className='cart-icon' onClick={() => setShowCart(true)}>
         <AiOutlineShopping />
+        {/* all items in the cart */}
         <span className='cart-item-qty'>{totalQuantities}</span>
       </button>
 
-      <Cart />
+      {/* only show the cart when showCart is set to true */}
+      {showCart && <Cart />}
     </div>
   )
 }
