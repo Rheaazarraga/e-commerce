@@ -13,7 +13,7 @@ const NavBar = () => {
       </p>
 
       {/* button to open the cart */}
-      <button type='button' className='cart-icon' onclick=''>
+      <button type='button' className='cart-icon' onClick=''>
         <AiOutlineShopping />
         <span className='cart-item-qty'>{totalQuantities}</span>
       </button>
