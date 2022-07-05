@@ -16,11 +16,19 @@ const Cart = () => {
   return (
     <div className='cart-wrapper' ref={cartRef}>
       <div className='cart-container'>
+        {/* open and closes cart */}
         <button type='button' className='cart-heading' onClick={() => setShowCart(false)}>
           <AiOutlineLeft />
           <span className='heading'>Your Cart</span>
           <span className='cart-num-items'>({totalQuantities} items)</span>
         </button>
+
+        {cartItems.length < 1 && (
+          <div className='empty-cart'>
+            <AiOutlineShopping size={150} />
+            <h3>Your shopping bag is empty</h3>
+          </div>
+        )}
       </div>
     </div>
   )
