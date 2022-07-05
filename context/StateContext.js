@@ -12,7 +12,7 @@ export const StateContext = ({ children }) => {
 	const [cartItems, setCartItems] = useState([]);
 
 	// keep track of total price
-	const [totalPrice, setTotalPrice] = useState();
+	const [totalPrice, setTotalPrice] = useState(0);
 
 	// what are the quantities of all the items
 	const [totalQuantities, setTotalQuantities] = useState(0);
