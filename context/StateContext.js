@@ -20,6 +20,10 @@ export const StateContext = ({ children }) => {
 	// can change the quantity for each individual item
 	const [qty, setQty] = useState(1);
 
+	// special variables for product we want to update
+	let foundProduct;
+	let index;
+
 	// ----- functions
 
   // if an item already exists in the cart
@@ -53,6 +57,20 @@ export const StateContext = ({ children }) => {
 		}
 		toast.success(`${qty} ${product.name} added to the cart.`);
 	};
+
+	const toggleCartItemQuantity = (id, value) => {
+		foundProduct = cartItems.find((item) => item._id === id);
+		// gives us an index of the found item in the cartItems array
+		index = cartItems.findIndex((product) => product._id === id);
+
+		if(value === 'inc') {
+			// new array, spread current cartItems, add new product into the array by spreading the properties of the product object, update the quantity and increment by 1
+			let newCartItems = [...cartItems, { ...product, quantity: product.quantity +1 }]
+			setCartItems(newCartItems)
+		} else if(value === 'dec') {
+
+		}
+	}
 
 	// increase quantity
 	const incQty = () => {
