@@ -11,6 +11,7 @@ const Cart = () => {
   // reference to cart
   const cartRef = useRef();
 
+  // data from Context
   const { totalPrice, totalQuantities, cartItems, setShowCart } = useStateContext();
 
   return (
@@ -23,7 +24,7 @@ const Cart = () => {
           <span className='cart-num-items'>({totalQuantities} items)</span>
         </button>
 
-        {/* if cart it empty */}
+        {/* if cart is empty */}
         {cartItems.length < 1 && (
           <div className='empty-cart'>
             <AiOutlineShopping size={150} />
