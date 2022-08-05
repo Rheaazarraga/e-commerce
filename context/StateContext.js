@@ -65,11 +65,17 @@ export const StateContext = ({ children }) => {
 
 		if(value === 'inc') {
 			// updating cartItems with current cart items, adding 1 new element to it, spreading props of that product, and increasing the quantity by 1
-			setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity +1 }]);
+			setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
 			setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price)
-			setTotalQuantities(prevTotalQuantities => prevTotalQuantities +1)
+			setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1)
+			// update cartItems by removing 1 item at a time, but not go lower than a quantity of 1
 		} else if(value === 'dec') {
+			if(foundProduct.quantity > 1) {
+				setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
+				setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price)
+				setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1)
 
+			}
 		}
 	}
 
@@ -99,7 +105,8 @@ export const StateContext = ({ children }) => {
 				qty,
 				incQty,
 				decQty,
-				onAdd
+				onAdd,
+				toggleCartItemQuantity
 			}}
 		>
 			{children}
