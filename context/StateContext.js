@@ -62,16 +62,20 @@ export const StateContext = ({ children }) => {
 		foundProduct = cartItems.find((item) => item._id === id);
 		// gives us an index of the found item in the cartItems array
 		index = cartItems.findIndex((product) => product._id === id);
-
+		// prevents the cart from spreading the already existing products in the cart which causes duplicates of the existing product each time a new item/ quantity increments
+		// initially used splice method but since it's a mutative method, it would update the state and override the last item added to the cart
+		// filter gives us a proper update of the cart items without directly mutating the state - we filter out the cart items to include all the items and only exclude the one that has the index = to the index we're looking for aka keep all the items except for the one we're currently updating 
+		const newCartItems = cartItems.filter((item) => item._id !== id)
+		
 		if(value === 'inc') {
 			// updating cartItems with current cart items, adding 1 new element to it, spreading props of that product, and increasing the quantity by 1
-			setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
+			setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity + 1 }]);
 			setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price)
 			setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1)
 			// update cartItems by removing 1 item at a time, but not go lower than a quantity of 1
 		} else if(value === 'dec') {
 			if(foundProduct.quantity > 1) {
-				setCartItems([...cartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
+				setCartItems([...newCartItems, { ...foundProduct, quantity: foundProduct.quantity - 1 }]);
 				setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price)
 				setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1)
 
